@@ -1,0 +1,102 @@
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+button:focus {
+	outline: 2px solid orange;
+	border-color: white;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.jstemplate {
+	display: none;
+}
+
+body.lightbox-opened {
+	overflow: hidden;
+}
+
+body {
+	overflow: auto;
+	padding: 5px;
+}
+
+.photo-source-btn {
+	background: white;
+	border: 2px solid #8888dd;
+	border-radius: 5px;
+}
+
+.lightbox {
+	background: #000;
+	opacity: 0;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	color: #bbb;
+	transition: opacity 300ms;
+}
+
+.lightbox-opened .lightbox {
+	z-index: 10;
+	opacity: 0.95;
+	height: 100%;
+}
+
+.lightbox-header {
+	font-size: 1em;
+	text-align: center;
+}
+
+.lightbox-nav-button {
+	margin: 8px 10px 0 0;
+	background: #000;
+	border: 0;
+}
+
+.close-lightbox {
+	font-weight: bold;
+	font-size: 1.2em;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	background: #000;
+	border: 0;
+}
+
+.lightbox-content {
+	height: 100%;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.lightbox-content:before {
+	display: inline-block;
+	content: "";
+	height: 100%;
+	vertical-align: middle;
+}
+
+
+.lightbox-photo-img {
+	vertical-align: middle;
+}
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.disabled {
+	opacity: 0.7;
+	cursor: default;
+}

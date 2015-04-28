@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="css/normalize.min.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body onload="Lightbox.Application().init()">
+		<!--[if lt IE 8]>
+		<p>Browser not supported.</p>
+		<![endif]-->
+
+		<h1>Lightbox</h1>
+		<h2>Pick your photo source</h2>
+		<p>
+			<button data-name="flickr" class="photo-source-btn">
+				Flickr
+			</button>
+		</p>
+		<p>
+			<button data-name="instagram" class="photo-source-btn">
+				Instagram
+			</button>
+		</p>
+		<!-- <p>or</p>
+		<p>
+			<input type="text" name="google-search">
+			<button data-name="google">
+				Google Search
+			</button>
+		</p> -->
+
+		<div class="console">
+			<p class="console-text"></p>
+		</div>
+		
+		<div class="lightbox">
+			<div class="lightbox-header">
+				<button class="lightbox-nav-button lightbox-prev-button" data-name="prev-img">&lt;</button>
+				<button class="lightbox-nav-button lightbox-next-button" data-name="next-img">&gt;</button>
+			</div>
+			
+			<button class="close-lightbox" data-name="close-lightbox">X</button>
+			
+			<div class="lightbox-content" data-name="lightbox-background"></div>
+		</div>
+
+		<div class="jstemplate" id="lightbox-photo-fragment">
+			<img class="lightbox-photo-img">
+		</div>
+
+		<script src="js/core.js"></script>
+		<script src="js/application.js"></script>
+		<script src="js/report.js"></script>
+		<script src="js/ajax.js"></script>
+		<script src="js/photo.js"></script>
+		<script src="js/global.js"></script>
+	</body>
+</html>
