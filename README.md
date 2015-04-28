@@ -13,7 +13,7 @@ This is a simple lightbox demo that uses the public API of Instagram and Flickr.
 
 ### Walkthrough
 
-![Video Walkthrough](https://raw.githubusercontent.com/davidtongbox/lightbox-demo/lightbox-demo/lightbox.gif)
+![Video Walkthrough](https://raw.githubusercontent.com/davidtongbox/lightbox-demo/master/lightbox.gif)
 
 ### Public demo URL
 
