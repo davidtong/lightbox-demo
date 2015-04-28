@@ -71,6 +71,17 @@ body {
 	border: 0;
 }
 
+.lightbox-title {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 40%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: left;
+}
+
 .lightbox-content {
 	height: 100%;
 	white-space: nowrap;

@@ -21,6 +21,7 @@ Lightbox.photoService = function() {
 		prevButton = document.querySelectorAll('.lightbox-prev-button')[0],
 		nextButton = document.querySelectorAll('.lightbox-next-button')[0],
 		lightboxContent = lightboxElement.querySelectorAll('.lightbox-content')[0],
+		lightboxTitle = lightboxElement.querySelectorAll('.lightbox-title')[0],
 		lightboxImages = [],
 		currIndex = 0,
 		totalImages = 0;
@@ -28,13 +29,17 @@ Lightbox.photoService = function() {
 	/**
 	 * Given a URL, create an IMG element and add to memory
  	 * @param {Object} url URL of image
+ 	 * @param {String} title Title of image
  	 * @returns {void}
 	 */	
-	function createImage(url) {
+	function createImage(url, title) {
 		var imgClone = photoFragment.querySelector('.lightbox-photo-img').cloneNode(false);
 			
 		imgClone.src = url;
-		lightboxImages.push(imgClone);
+		lightboxImages.push({
+			'image': imgClone,
+			'title': title
+		});
 	}
 	
 	/*
@@ -79,12 +84,13 @@ Lightbox.photoService = function() {
 			document.body.className += ' lightbox-opened';
 			prevButton.className += ' disabled';
 			
-			// set content
-			lightboxContent.appendChild(lightboxImages[0]);
-			
 			// initial states
 			totalImages = lightboxImages.length;
 			currIndex = 0;
+			
+			// set content
+			this.navigate(nextButton, 0);
+
 			if (totalImages > 1) {
 				nextButton.className = nextButton.className.replace(/disabled/g, '');
 			}
@@ -146,8 +152,18 @@ Lightbox.photoService = function() {
 		 * @param {Object} offset
 		 */
 		navigate: function(button, offset) {
-			var currImgElement = lightboxElement.querySelectorAll('.lightbox-photo-img')[0];
-			lightboxContent.replaceChild(lightboxImages[currIndex + offset], currImgElement);
+			var newImageObj = lightboxImages[currIndex + offset],
+				newImageElement = newImageObj.image,
+				newTitle = newImageObj.title,
+				currImgElement = lightboxElement.querySelectorAll('.lightbox-photo-img')[0];
+
+			lightboxTitle.innerHTML = newTitle;
+			lightboxTitle.title = newTitle;
+			if (currImgElement) {
+				lightboxContent.replaceChild(newImageElement, currImgElement);
+			} else {
+				lightboxContent.appendChild(newImageElement);
+			}
 			currIndex = currIndex + offset;
 			
 			// enable button
@@ -165,6 +181,7 @@ Lightbox.photoService = function() {
 			    photos,
 			    photo,
 			    url,
+			    title,
 			    i,
 			    length;
 			    
@@ -177,7 +194,8 @@ Lightbox.photoService = function() {
 			for (i = 0, length = photos.length; i < length; i++) {
 				photo = photos[i];
 				url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo['id'] + '_' + photo.secret + '.jpg';
-				createImage(url);
+				title = photo.title;
+				createImage(url, title);
 			}
 		},
 		
@@ -190,6 +208,7 @@ Lightbox.photoService = function() {
 			var photos,
 			    photo,
 			    url,
+			    title,
 			    i,
 			    length;
 			    
@@ -200,7 +219,8 @@ Lightbox.photoService = function() {
 				
 				try{
 					url = photo.images.standard_resolution.url;
-					createImage(url);
+					title = photo.caption ? photo.caption.text : '';
+					createImage(url, title);
 				} catch(e) {
 					throw(Lightbox.reportService().set('Error getting photos from Instagram into Lightbox: ' + e));
 				}
